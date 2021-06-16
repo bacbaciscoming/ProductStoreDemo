@@ -54,7 +54,7 @@ class WebServiceRequestTests: XCTestCase {
                         e.fulfill()
                     }
                 })
-            waitForExpectations(timeout: 10.0, handler: nil)
+            waitForExpectations(timeout: 30.0, handler: nil)
         }
     }
 }

@@ -90,16 +90,7 @@ class ProductListViewControllerTests: XCTestCase{
             routeToProductDetailCalled = true
         }
     }
-    
-    class CollectionViewSpy: UICollectionView {
-        
-        var reloadDataCalled = false
-        
-        override func reloadData() {
-            reloadDataCalled = true
-        }
-    }
-    
+
     // MARK: Tests
     
     func testGetProductListWhenViewIsLoaded(){
@@ -113,26 +104,6 @@ class ProductListViewControllerTests: XCTestCase{
         
         // Then
         XCTAssertTrue(spy.getProductListCalled, "viewDidLoad() should ask the interactor to get product list")
-    }
-    
-    func testDisplayProductList(){
-        
-        // Given
-        let viewModel = ProductList.List.ViewModel(productList: [ProductList.List.ViewModel.Product(title: "Title",
-                                                                              image: "https://firebasestorage.googleapis.com/v0/b/productstoredemo.appspot.com/o/poke.jpeg?alt=media&token=6c487be9-065b-4985-94c2-729e21a8426",
-                                                                              isNewProduct: true,
-                                                                              price: 4.0)])
-        loadView()
-        let collectionSpy = CollectionViewSpy(frame: sut.collectionView.frame, collectionViewLayout: sut.collectionView.collectionViewLayout)
-        sut.collectionView = collectionSpy
-        
-        // When
-        sut.displayProductList(viewModel: viewModel)
-        
-        // Then
-        DispatchQueue.main.async {
-            XCTAssert(collectionSpy.reloadDataCalled, "Displaying fetched product list should reload the collection view")
-        }  
     }
     
     func testNumberOfItemsInSectionShouldEqaulNumberOfProductsToDisplay(){
@@ -175,15 +146,12 @@ class ProductListViewControllerTests: XCTestCase{
         XCTAssertNotNil(cell?.imageView, "A properly configured collection view cell should display the product image")
     }
     
-    func testShouldSelectCurrentProductAndRouteToProductDetail(){
+    func testShouldSelectCurrentProductAnd(){
         
         // Given
         let interactorSpy = ProductListBusinessLogicSpy()
         interactorSpy.productList = [ProductTest.product1]
         sut.interactor = interactorSpy
-        
-        let routerSpy = ProductListRouterSpy()
-        sut.router = routerSpy
         
         loadView()
         let collectionView = sut.collectionView
@@ -195,8 +163,25 @@ class ProductListViewControllerTests: XCTestCase{
             
             // Then
             XCTAssertTrue(interactorSpy.selectCurrentProductCalled, "CollectionView didSelectItem should ask the interactor to selectCurrentProduct")
-            XCTAssertTrue(routerSpy.routeToProductDetailCalled, "CollectionView didSelectItem should ask the interactor to selectCurrentProduct")
         }
+    }
+    
+    func testShouldRouteToProductDetail(){
+        
+        // Given
+        
+        let routerSpy = ProductListRouterSpy()
+        sut.router = routerSpy
+        
+        loadView()
+        
+        // When
+        
+        sut.displayProductDetail()
+        
+        //Then
+        
+        XCTAssertTrue(routerSpy.routeToProductDetailCalled, "displayProductDetail should ask the router to route")
     }
     
     func testGetProductListFailureShouldShowAnAlert(){

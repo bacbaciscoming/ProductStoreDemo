@@ -135,10 +135,8 @@ class ProductListViewController: UIViewController, ProductListDisplayLogic{
     func displayProductList(viewModel: ProductList.List.ViewModel){
         self.productList = viewModel.productList
         DispatchQueue.main.async {
-            UIView.performWithoutAnimation {
-                self.stopLoading()
-                self.collectionView.reloadData()
-            }
+            self.stopLoading()
+            self.collectionView.reloadData()
         }
     }
     

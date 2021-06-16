@@ -24,6 +24,6 @@ class LoadImageTests: XCTestCase {
                 XCTFail("Load image failed : \(error?.localizedDescription ?? "")")
             }
         }
-        waitForExpectations(timeout: 10.0, handler: nil)
+        waitForExpectations(timeout: 30.0, handler: nil)
     }
 }
