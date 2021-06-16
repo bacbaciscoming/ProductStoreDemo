@@ -7,7 +7,8 @@ A Demo Project from Ascend Commerce Mobile Development Exam by Phittaya Wongsuwa
 - pods
   - Alamofire
   - SDWebImage
-  - 
+  
+  
 - how to run and test
   1. clone this repo
   2. open shell window and navigate to project folder
