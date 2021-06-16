@@ -1,0 +1,21 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'ProductStoreDemo' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for ProductStoreDemo
+    pod 'Alamofire'
+    pod 'SDWebImage'
+
+  target 'ProductStoreDemoTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'ProductStoreDemoUITests' do
+    # Pods for testing
+  end
+
+end
