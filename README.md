@@ -1,6 +1,6 @@
 # ProductStoreDemo
 
-A Demo Project from Ascend Commerce Mobile Development Exam by Phittaya Wongsuwan
+An iOS Demo Project from Ascend Commerce Mobile Development Exam by Phittaya Wongsuwan
 
 - using VIP (clean swift)
 - unit tests
